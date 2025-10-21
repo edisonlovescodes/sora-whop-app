@@ -291,15 +291,15 @@ export default function PromptBuilder({ onPromptChange }: PromptBuilderProps) {
 				</div>
 			</div>
 
-			{mode === "simple" ? (
-				<div className="mt-5 space-y-3">
-					<textarea
-						value={simplePrompt}
-						onChange={(event) => handleSimpleChange(event.target.value)}
-						placeholder="Example: neon skyline hero walking toward camera"
-						rows={5}
-						className="w-full rounded-2xl border border-white/10 bg-slate-950/60 p-4 text-base text-slate-100 placeholder:text-slate-500 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500/30"
-					/>
+            {mode === "simple" ? (
+                <div className="mt-5 space-y-3">
+                    <textarea
+                        value={simplePrompt}
+                        onChange={(event) => handleSimpleChange(event.target.value)}
+                        placeholder="Example: neon skyline hero walking toward camera"
+                        rows={5}
+                        className="w-full rounded-2xl border border-white/10 bg-slate-950/60 p-4 text-base text-slate-100 placeholder:text-slate-500 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500/30"
+                    />
 
 					<div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
 						<span>{characterCount} chars</span>
@@ -314,17 +314,47 @@ export default function PromptBuilder({ onPromptChange }: PromptBuilderProps) {
 					</div>
 				</div>
 			) : (
-				<div className="mt-5 space-y-2">
-					<textarea
-						value={jsonValue}
-						onChange={(event) => handleJsonChange(event.target.value)}
-						spellCheck={false}
-						rows={12}
-						className="w-full rounded-2xl border border-white/10 bg-slate-950/60 p-4 font-mono text-sm text-slate-100 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500/30"
-					/>
-					<p className="text-xs text-slate-400">Keep sections tidy: scene, camera, motion, lighting, timeline.</p>
-				</div>
-			)}
+                <div className="mt-5 space-y-2">
+                    <textarea
+                        value={jsonValue}
+                        onChange={(event) => handleJsonChange(event.target.value)}
+                        spellCheck={false}
+                        rows={12}
+                        className="w-full rounded-2xl border border-white/10 bg-slate-950/60 p-4 font-mono text-sm text-slate-100 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500/30"
+                    />
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <p className="text-xs text-slate-400">Keep sections tidy: scene, camera, motion, lighting, timeline.</p>
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard.writeText(jsonValue).catch(() => {});
+                          }}
+                          className="inline-flex items-center justify-center rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow hover:bg-slate-200"
+                        >
+                          Copy JSON
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const blob = new Blob([jsonValue], { type: 'application/json' });
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'sora_prompt.json';
+                            document.body.appendChild(a);
+                            a.click();
+                            a.remove();
+                            URL.revokeObjectURL(url);
+                          }}
+                          className="inline-flex items-center justify-center rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white hover:border-white/40"
+                        >
+                          Download
+                        </button>
+                      </div>
+                    </div>
+                </div>
+            )}
 
 			{jsonError && (
 				<p className="mt-4 rounded-2xl border border-rose-500/40 bg-rose-500/15 px-4 py-3 text-sm text-rose-200">
