@@ -12,12 +12,21 @@ export default function EmbeddedCheckout({ url, label = "Upgrade Now" }: Embedde
 
   const handleOpen = useCallback(() => {
     if (!url) return;
-    // Many providers (including some Whop checkout endpoints) deny iframe embedding.
-    // If it's a Whop checkout link, open in the top window for a reliable flow.
+    // Many providers (including Whop checkout) deny iframe embedding.
+    // For whop.com, open a centered popup window for an in-app feeling.
     if (/^https?:\/\/([^.]+\.)?whop\.com\/.+/i.test(url)) {
-      try {
-        window.open(url, "_top");
-      } catch {
+      const w = 520;
+      const h = 760;
+      const dualScreenLeft = window.screenLeft ?? window.screenX ?? 0;
+      const dualScreenTop = window.screenTop ?? window.screenY ?? 0;
+      const width = window.innerWidth ?? document.documentElement.clientWidth ?? screen.width;
+      const height = window.innerHeight ?? document.documentElement.clientHeight ?? screen.height;
+      const left = Math.max(0, (width - w) / 2 + dualScreenLeft);
+      const top = Math.max(0, (height - h) / 2 + dualScreenTop);
+      const features = `popup=yes,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=${w},height=${h},top=${top},left=${left}`;
+      const win = window.open(url, "whopCheckout", features);
+      if (!win) {
+        // If blocked, fall back to top navigation
         window.location.href = url;
       }
       return;
