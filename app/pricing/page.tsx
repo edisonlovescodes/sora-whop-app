@@ -35,17 +35,17 @@ export default async function PricingPage() {
         </div>
 
         <header className="mb-8">
-          <h1 className="text-3xl font-semibold">Choose Your Plan</h1>
+          <h1 className="text-3xl font-bold">Simple, Transparent Pricing</h1>
           <p className="mt-2 text-[#FCF6F5]/80">
-            Get auto renders with fair pricing and clear credits.
+            Pay for what you create. No hidden fees, no surprises.
           </p>
         </header>
 
         {/* Cost per duration card */}
         <section className="mb-8 rounded-3xl border border-[#FA4616]/20 bg-white/5 p-5">
-          <h2 className="text-lg font-semibold">Credit Costs</h2>
+          <h2 className="text-lg font-bold">How Credits Work</h2>
           <p className="mt-1 text-sm text-[#FCF6F5]/80">
-            Standard uses fewer credits. Pro is higher fidelity.
+            Standard quality costs fewer credits. Pro delivers maximum fidelity.
           </p>
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-[#141212] p-4">
@@ -92,9 +92,9 @@ export default async function PricingPage() {
             <div className="mt-2 text-3xl font-semibold">$19</div>
             <p className="mt-3 text-sm text-[#FCF6F5]/80">Monthly</p>
             <ul className="mt-4 space-y-2 text-sm">
-              <li>✓ 100 standard seconds / mo</li>
+              <li>✓ 25 credits per month</li>
               <li>✓ All Free features</li>
-              <li>✓ Faster queue</li>
+              <li>✓ Priority queue</li>
             </ul>
             <div className="mt-6">
               <a
@@ -115,9 +115,9 @@ export default async function PricingPage() {
             <div className="mt-2 text-3xl font-semibold">$99</div>
             <p className="mt-3 text-sm text-[#FCF6F5]/80">Monthly</p>
             <ul className="mt-4 space-y-2 text-sm">
-              <li>✓ 1,000 standard seconds / mo</li>
-              <li>✓ Pro 1080p access (higher credits)</li>
-              <li>✓ Priority queue</li>
+              <li>✓ 250 credits per month</li>
+              <li>✓ Pro 1080p quality access</li>
+              <li>✓ Premium support</li>
             </ul>
             <div className="mt-6">
               <a
@@ -135,9 +135,9 @@ export default async function PricingPage() {
             <div className="mt-2 text-3xl font-semibold">$399</div>
             <p className="mt-3 text-sm text-[#FCF6F5]/80">Monthly</p>
             <ul className="mt-4 space-y-2 text-sm">
-              <li>✓ Unlimited standard seconds</li>
-              <li>✓ Best queue + support</li>
-              <li>✓ Team seats</li>
+              <li>✓ 1,000 credits per month</li>
+              <li>✓ Dedicated support</li>
+              <li>✓ Team collaboration</li>
             </ul>
             <div className="mt-6">
               <a
@@ -152,32 +152,32 @@ export default async function PricingPage() {
 
         {/* Top up one-time credits */}
         <section className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-5">
-          <h2 className="text-lg font-semibold">Top up credits</h2>
-          <p className="mt-1 text-sm text-[#FCF6F5]/80">One-time packs to keep the renders flowing.</p>
+          <h2 className="text-lg font-bold">Need More Credits?</h2>
+          <p className="mt-1 text-sm text-[#FCF6F5]/80">One-time credit packs. No subscription required.</p>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-[#141212] p-4">
               <div className="text-sm text-[#FCF6F5]/80">Starter Pack</div>
               <div className="mt-1 text-2xl font-semibold">$10</div>
-              <p className="mt-1 text-sm text-[#FCF6F5]/80">5 credits (20s std)</p>
-              <a href={topup10} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy</a>
+              <p className="mt-1 text-sm text-[#FA4616] font-semibold">5 credits</p>
+              <a href={topup10} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy Now</a>
             </div>
             <div className="rounded-2xl border border-white/10 bg-[#141212] p-4">
               <div className="text-sm text-[#FCF6F5]/80">Creator Pack</div>
               <div className="mt-1 text-2xl font-semibold">$25</div>
-              <p className="mt-1 text-sm text-[#FCF6F5]/80">14 credits (56s std)</p>
-              <a href={topup25} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy</a>
+              <p className="mt-1 text-sm text-[#FA4616] font-semibold">14 credits</p>
+              <a href={topup25} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy Now</a>
             </div>
             <div className="rounded-2xl border border-white/10 bg-[#141212] p-4">
               <div className="text-sm text-[#FCF6F5]/80">Pro Pack</div>
               <div className="mt-1 text-2xl font-semibold">$50</div>
-              <p className="mt-1 text-sm text-[#FCF6F5]/80">30 credits (120s std)</p>
-              <a href={topup50} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy</a>
+              <p className="mt-1 text-sm text-[#FA4616] font-semibold">30 credits</p>
+              <a href={topup50} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy Now</a>
             </div>
           </div>
         </section>
 
         <p className="mt-8 text-center text-xs text-[#FCF6F5]/60">
-          One plan covers your workspace. Credits apply to auto renders. Prices and features are examples — configure real billing in Whop.
+          All plans include access to the full platform. Credits never expire. Cancel anytime.
         </p>
       </main>
     </div>
