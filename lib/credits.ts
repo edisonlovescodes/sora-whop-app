@@ -119,8 +119,8 @@ export function isTierAllowedModel(
 	tier: SubscriptionTier,
 	model: "sora-2" | "sora-2-pro",
 ): boolean {
-	const tierConfig = TIER_CONFIG[tier];
-	return tierConfig.allowedModels.includes(model);
+	const tierModels = TIER_CONFIG[tier].allowedModels;
+	return tierModels.some((allowedModel) => allowedModel === model);
 }
 
 /**

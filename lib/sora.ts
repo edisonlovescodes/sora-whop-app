@@ -3,16 +3,15 @@ import { MOCK_MODE, mockCheckSoraJobStatus, mockEnhancePrompt, mockGenerateSoraV
 import {
   generateVideo as generateSoraVideoProvider,
   checkVideoStatus as checkSoraJobStatusProvider,
-  SoraGenerationParams,
-  SoraJobStatus,
 } from './sora-provider';
+import type { SoraGenerationParams, SoraJobStatus } from './sora-provider';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY ?? '',
 });
 
-export { SoraGenerationParams, SoraJobStatus };
+export type { SoraGenerationParams, SoraJobStatus };
 
 export async function generateSoraVideo(
   params: SoraGenerationParams,
