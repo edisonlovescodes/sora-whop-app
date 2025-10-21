@@ -1,6 +1,7 @@
 // app/pricing/page.tsx
 import { headers } from "next/headers";
 import Link from "next/link";
+import EmbeddedCheckout from "@/app/components/EmbeddedCheckout";
 import { getOrCreateUser } from "@/lib/users";
 import { CREDIT_COSTS } from "@/lib/types/database";
 
@@ -97,12 +98,7 @@ export default async function PricingPage() {
               <li>✓ Priority queue</li>
             </ul>
             <div className="mt-6">
-              <a
-                href={basicUrl}
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90"
-              >
-                Upgrade Now
-              </a>
+              <EmbeddedCheckout url={basicUrl} label="Upgrade Now" />
             </div>
           </div>
 
@@ -120,12 +116,7 @@ export default async function PricingPage() {
               <li>✓ Premium support</li>
             </ul>
             <div className="mt-6">
-              <a
-                href={proUrl}
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90"
-              >
-                Upgrade Now
-              </a>
+              <EmbeddedCheckout url={proUrl} label="Upgrade Now" />
             </div>
           </div>
 
@@ -140,12 +131,7 @@ export default async function PricingPage() {
               <li>✓ Team collaboration</li>
             </ul>
             <div className="mt-6">
-              <a
-                href={maxUrl}
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90"
-              >
-                Upgrade Now
-              </a>
+              <EmbeddedCheckout url={maxUrl} label="Upgrade Now" />
             </div>
           </div>
         </section>
@@ -159,19 +145,25 @@ export default async function PricingPage() {
               <div className="text-sm text-[#FCF6F5]/80">Starter Pack</div>
               <div className="mt-1 text-2xl font-semibold">$10</div>
               <p className="mt-1 text-sm text-[#FA4616] font-semibold">5 credits</p>
-              <a href={topup10} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy Now</a>
+              <div className="mt-4">
+                <EmbeddedCheckout url={topup10} label="Buy Now" />
+              </div>
             </div>
             <div className="rounded-2xl border border-white/10 bg-[#141212] p-4">
               <div className="text-sm text-[#FCF6F5]/80">Creator Pack</div>
               <div className="mt-1 text-2xl font-semibold">$25</div>
               <p className="mt-1 text-sm text-[#FA4616] font-semibold">14 credits</p>
-              <a href={topup25} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy Now</a>
+              <div className="mt-4">
+                <EmbeddedCheckout url={topup25} label="Buy Now" />
+              </div>
             </div>
             <div className="rounded-2xl border border-white/10 bg-[#141212] p-4">
               <div className="text-sm text-[#FCF6F5]/80">Pro Pack</div>
               <div className="mt-1 text-2xl font-semibold">$50</div>
               <p className="mt-1 text-sm text-[#FA4616] font-semibold">30 credits</p>
-              <a href={topup50} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy Now</a>
+              <div className="mt-4">
+                <EmbeddedCheckout url={topup50} label="Buy Now" />
+              </div>
             </div>
           </div>
         </section>

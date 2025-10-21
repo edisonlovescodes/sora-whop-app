@@ -12,7 +12,8 @@ const nextConfig: NextConfig = {
 				headers: [
 					{
 						key: "Content-Security-Policy",
-						value: "frame-ancestors https://whop.com https://*.whop.com;",
+						// Allow Whop to embed our app (frame-ancestors) and allow our app to embed Whop checkout (frame-src)
+						value: "frame-ancestors https://whop.com https://*.whop.com; frame-src 'self' https://whop.com https://*.whop.com; child-src 'self' https://whop.com https://*.whop.com;",
 					},
 					{
 						key: "X-Frame-Options",
