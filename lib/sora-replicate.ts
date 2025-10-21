@@ -108,9 +108,14 @@ export async function checkSoraJobStatusReplicate(
 		}
 
 		const status = prediction.status as ReplicateJobState;
+		const metrics = prediction.metrics as
+			| {
+					progress_percent?: number;
+			  }
+			| undefined;
 		const progress =
-			typeof prediction.metrics?.progress_percent === "number"
-				? prediction.metrics.progress_percent
+			typeof metrics?.progress_percent === "number"
+				? metrics.progress_percent
 				: undefined;
 
 		let videoUrl: string | undefined;
