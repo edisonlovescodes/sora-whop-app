@@ -117,16 +117,16 @@ export function VideoStatus({
 			: statusMeta.description;
 
 	return (
-		<div className="rounded-2xl border border-white/10 bg-slate-950/70 p-5 shadow-md shadow-black/10">
+		<div className="rounded-2xl border border-[#FA4616]/20 bg-[#141212] p-6">
 			<div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
 				<div>
-					<p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-						Render status
+					<p className="text-xs font-bold uppercase tracking-wider text-[#FA4616]">
+						Render Status
 					</p>
-					<h3 className="mt-1 text-lg font-semibold text-white">
+					<h3 className="mt-1 text-lg font-bold text-[#FCF6F5]">
 						{statusMeta.label}
 					</h3>
-					<p className="mt-2 text-sm text-slate-300">{dynamicDescription}</p>
+					<p className="mt-2 text-sm text-[#FCF6F5]/70">{dynamicDescription}</p>
 				</div>
 				<span
 					className={`inline-flex h-2 w-16 rounded-full ${statusMeta.accent} opacity-90`}
@@ -134,7 +134,7 @@ export function VideoStatus({
 				/>
 			</div>
 
-			<div className="mt-5">
+			<div className="mt-6">
 				<div className="flex items-center gap-3">
 					{PROGRESS_STEPS.map((step, index) => {
 						const isComplete = currentStepIndex > index || status === "completed";
@@ -143,19 +143,19 @@ export function VideoStatus({
 						return (
 							<div key={step} className="flex-1">
 								<div
-									className={`h-1.5 rounded-full transition ${
+									className={`h-2 rounded-full transition ${
 										isComplete || isActive
-											? "bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-500"
-											: "bg-white/10"
+											? "bg-[#FA4616]"
+											: "bg-[#FA4616]/20"
 									}`}
 								/>
 								<p
-									className={`mt-2 text-xs font-medium uppercase tracking-wide ${
+									className={`mt-2 text-xs font-semibold uppercase tracking-wider ${
 										isActive
-											? "text-white"
+											? "text-[#FA4616]"
 											: isComplete
-											? "text-slate-300"
-											: "text-slate-500"
+											? "text-[#FCF6F5]"
+											: "text-[#FCF6F5]/50"
 									}`}
 								>
 									{STATUS_META[step].label}
@@ -167,14 +167,14 @@ export function VideoStatus({
 			</div>
 
 			{status === "failed" && (
-				<p className="mt-4 rounded-2xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+				<p className="mt-4 rounded-2xl border border-[#FA4616]/40 bg-[#FA4616]/10 px-4 py-3 text-sm text-[#FA4616]">
 					{error ?? "The render could not be completed. Please try again."}
 				</p>
 			)}
 
 			{status === "processing" && (
-				<div className="mt-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3 text-sm text-slate-200">
-					<span className="h-2 w-2 animate-ping rounded-full bg-sky-300" />
+				<div className="mt-4 flex items-center gap-3 rounded-2xl border border-[#FA4616]/40 bg-[#FA4616]/10 px-4 py-3 text-sm text-[#FCF6F5]">
+					<span className="h-2 w-2 animate-ping rounded-full bg-[#FA4616]" />
 					{typeof progress === "number"
 						? `${progress}% and climbing…`
 						: "Sora is stitching frames…"}
@@ -182,14 +182,14 @@ export function VideoStatus({
 			)}
 
 			{showLagWarning && (
-				<p className="mt-3 text-xs text-amber-200">
+				<p className="mt-3 text-xs text-[#FA4616]/70">
 					Running long. Peek at Replicate or restart if needed.
 				</p>
 			)}
 
 			{status === "completed" && videoUrl && (
 				<div className="mt-6 space-y-4">
-					<div className="overflow-hidden rounded-2xl border border-white/10 bg-black/60">
+					<div className="overflow-hidden rounded-2xl border border-[#FA4616]/20 bg-black/80">
 						<video
 							src={videoUrl}
 							controls
@@ -200,19 +200,19 @@ export function VideoStatus({
 					</div>
 					<div className="flex flex-wrap gap-3">
 						<a
-							className="inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-2 text-sm font-medium text-white transition hover:border-white/40"
+							className="inline-flex items-center justify-center rounded-full border border-[#FA4616]/40 px-5 py-2 text-sm font-bold text-[#FA4616] transition hover:bg-[#FA4616]/10"
 							href={videoUrl}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							Open in new tab
+							Open in New Tab
 						</a>
 						<a
-							className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
+							className="inline-flex items-center justify-center rounded-full bg-[#FA4616] px-5 py-2 text-sm font-bold text-[#141212] transition hover:bg-[#FA4616]/90"
 							href={videoUrl}
 							download
 						>
-							Download clip
+							Download Clip
 						</a>
 					</div>
 				</div>

@@ -100,37 +100,37 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
 	};
 
     return (
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
             <PromptBuilder onPromptChange={handlePromptChange} />
 
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-6">
                 {!jsonOnly && <VideoSettings onSettingsChange={setSettings} />}
 
-                <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-md shadow-black/10">
+                <div className="rounded-3xl border border-[#FA4616]/20 bg-[#141212] p-6">
                     <div className="space-y-1">
-                        <h2 className="text-lg font-semibold text-white">{jsonOnly ? 'Export' : 'Summary'}</h2>
-                        <p className="text-sm text-slate-300">
-                          {jsonOnly ? 'Copy your JSON and paste into Sora.' : 'Looks good? Hit go.'}
+                        <h2 className="text-xl font-bold text-[#FCF6F5]">{jsonOnly ? 'Export' : 'Summary'}</h2>
+                        <p className="text-sm text-[#FCF6F5]/70">
+                          {jsonOnly ? 'Copy your JSON and paste into Sora' : 'Review and render'}
                         </p>
                     </div>
 
                     {!jsonOnly && (
-                    <dl className="mt-5 grid grid-cols-1 gap-2 text-sm text-slate-200">
-                        <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3">
-                            <dt className="text-slate-400">Model</dt>
-                            <dd className="font-medium text-white">{modelLabel}</dd>
+                    <dl className="mt-5 grid grid-cols-1 gap-2 text-sm">
+                        <div className="flex items-center justify-between rounded-2xl border border-[#FA4616]/20 bg-[#141212]/50 px-4 py-3">
+                            <dt className="text-[#FCF6F5]/70">Model</dt>
+                            <dd className="font-bold text-[#FCF6F5]">{modelLabel}</dd>
                         </div>
-                        <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3">
-                            <dt className="text-slate-400">Aspect</dt>
-                            <dd className="font-medium text-white">{resolutionLabel}</dd>
+                        <div className="flex items-center justify-between rounded-2xl border border-[#FA4616]/20 bg-[#141212]/50 px-4 py-3">
+                            <dt className="text-[#FCF6F5]/70">Aspect</dt>
+                            <dd className="font-bold text-[#FCF6F5]">{resolutionLabel}</dd>
                         </div>
-                        <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3">
-                            <dt className="text-slate-400">Duration</dt>
-                            <dd className="font-medium text-white">{durationLabel}</dd>
+                        <div className="flex items-center justify-between rounded-2xl border border-[#FA4616]/20 bg-[#141212]/50 px-4 py-3">
+                            <dt className="text-[#FCF6F5]/70">Duration</dt>
+                            <dd className="font-bold text-[#FCF6F5]">{durationLabel}</dd>
                         </div>
-                        <div className="flex items-center justify-between rounded-2xl border border-sky-500/40 bg-sky-500/10 px-4 py-3 text-sky-100">
-                            <dt className="text-slate-200">Credits</dt>
-                            <dd className="font-semibold">{creditsRequired}</dd>
+                        <div className="flex items-center justify-between rounded-2xl border border-[#FA4616]/40 bg-[#FA4616]/10 px-4 py-3">
+                            <dt className="font-semibold text-[#FCF6F5]">Credits</dt>
+                            <dd className="font-bold text-[#FA4616]">{creditsRequired}</dd>
                         </div>
                     </dl>
                     )}
@@ -140,17 +140,17 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
                         type="button"
                         onClick={handleGenerate}
                         disabled={isGenerating}
-                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FA4616] px-6 py-3 text-sm font-bold text-[#141212] shadow-lg hover:bg-[#FA4616]/90 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                         {isGenerating ? (
                             <>
-                                <span className="h-2 w-2 animate-ping rounded-full bg-white" />
+                                <span className="h-2 w-2 animate-ping rounded-full bg-[#141212]" />
                                 Starting render…
                             </>
                         ) : (
                             <>
-                                <span className="h-2 w-2 rounded-full bg-white/80" />
-                                Render clip
+                                <span className="h-2 w-2 rounded-full bg-[#141212]/80" />
+                                Render Clip
                             </>
                         )}
                     </button>
@@ -166,7 +166,7 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
                             );
                             navigator.clipboard.writeText(json).catch(() => {});
                           }}
-                          className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-200"
+                          className="inline-flex items-center justify-center rounded-full bg-[#FA4616] px-6 py-3 text-sm font-bold text-[#141212] shadow-lg hover:bg-[#FA4616]/90"
                         >
                           Copy JSON
                         </button>
@@ -189,7 +189,7 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
                             a.remove();
                             URL.revokeObjectURL(url);
                           }}
-                          className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:border-white/40"
+                          className="inline-flex items-center justify-center rounded-full border border-[#FA4616]/40 px-6 py-3 text-sm font-bold text-[#FA4616] hover:bg-[#FA4616]/10"
                         >
                           Download JSON
                         </button>
@@ -197,27 +197,27 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
                     )}
 
                     {error && (
-                        <div className="mt-4 rounded-2xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+                        <div className="mt-4 rounded-2xl border border-[#FA4616]/40 bg-[#FA4616]/10 px-4 py-3 text-sm text-[#FA4616]">
                             <p>{error}</p>
                             <a
                               href="/pricing"
-                              className="mt-3 inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-xs font-semibold text-rose-700 hover:bg-slate-200"
+                              className="mt-3 inline-flex items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-xs font-bold text-[#141212] hover:bg-[#FA4616]/90"
                             >
-                              Get more credits
+                              Get More Credits
                             </a>
                         </div>
                     )}
 
 					{successMessage && (
-						<p className="mt-4 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-100">
+						<p className="mt-4 rounded-2xl border border-[#FA4616]/40 bg-[#FA4616]/10 px-4 py-3 text-sm text-[#FCF6F5]">
 							{successMessage}
 						</p>
 					)}
 
 					{typeof creditsRemaining === "number" && (
-						<p className="mt-4 text-xs text-slate-400">
+						<p className="mt-4 text-xs text-[#FCF6F5]/70">
 							Credits after run:{" "}
-							<span className="font-semibold text-slate-200">
+							<span className="font-bold text-[#FA4616]">
 								{creditsRemaining}
 							</span>
 						</p>

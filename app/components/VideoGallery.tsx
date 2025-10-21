@@ -45,16 +45,16 @@ export default function VideoGallery({ userId }: VideoGalleryProps) {
 
 	if (loading) {
 		return (
-			<div className="w-full rounded-3xl border border-white/10 bg-slate-900/60 p-10 text-center text-slate-300">
-				<div className="mx-auto h-10 w-10 rounded-full border-4 border-white/10 border-t-sky-400 animate-spin" />
-				<p className="mt-6 text-sm text-slate-400">Loading clips…</p>
+			<div className="w-full rounded-3xl border border-[#FA4616]/20 bg-[#141212] p-10 text-center">
+				<div className="mx-auto h-10 w-10 rounded-full border-4 border-[#FA4616]/20 border-t-[#FA4616] animate-spin" />
+				<p className="mt-6 text-sm text-[#FCF6F5]/70">Loading clips…</p>
 			</div>
 		);
 	}
 
 	if (error) {
 		return (
-			<div className="w-full rounded-3xl border border-rose-500/40 bg-rose-500/10 p-8 text-center text-sm text-rose-100">
+			<div className="w-full rounded-3xl border border-[#FA4616]/40 bg-[#FA4616]/10 p-8 text-center text-sm text-[#FA4616]">
 				{error}
 			</div>
 		);
@@ -62,9 +62,9 @@ export default function VideoGallery({ userId }: VideoGalleryProps) {
 
 	if (videos.length === 0) {
 		return (
-				<div className="w-full rounded-3xl border border-white/10 bg-slate-900/60 p-10 text-center">
-					<p className="text-sm text-slate-300">
-						No clips yet—spin one up above.
+				<div className="w-full rounded-3xl border border-[#FA4616]/20 bg-[#141212] p-10 text-center">
+					<p className="text-sm text-[#FCF6F5]/70">
+						No clips yet—create one above
 					</p>
 			</div>
 		);
@@ -72,19 +72,19 @@ export default function VideoGallery({ userId }: VideoGalleryProps) {
 
 	return (
 		<div className="w-full">
-			<h3 className="mb-4 text-lg font-semibold text-white">
-				Your clips ({videos.length})
+			<h3 className="mb-5 text-xl font-bold text-[#FCF6F5]">
+				Your Clips ({videos.length})
 			</h3>
 
 			<div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
 				{videos.map((video) => (
 					<div
 						key={video.id}
-						className="flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 shadow-md shadow-black/15"
+						className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#FA4616]/20 bg-[#141212] shadow-lg"
 					>
 						{/* Video Preview */}
 						{video.video_url && video.status === "completed" ? (
-							<div className="aspect-video bg-black/80">
+							<div className="aspect-video bg-black">
 								<video
 									src={video.video_url}
 									controls
@@ -94,14 +94,14 @@ export default function VideoGallery({ userId }: VideoGalleryProps) {
 								</video>
 							</div>
 						) : (
-							<div className="flex aspect-video items-center justify-center bg-slate-900/80">
-								<div className="text-center text-sm text-slate-400">
+							<div className="flex aspect-video items-center justify-center bg-[#141212]/50">
+								<div className="text-center text-sm text-[#FCF6F5]/70">
 									{video.status === "pending" && "Pending…"}
 									{video.status === "processing" && (
-										<div className="mx-auto h-8 w-8 rounded-full border-4 border-white/10 border-t-sky-400 animate-spin" />
+										<div className="mx-auto h-8 w-8 rounded-full border-4 border-[#FA4616]/20 border-t-[#FA4616] animate-spin" />
 									)}
 									{video.status === "failed" && (
-										<span className="text-rose-300">Failed</span>
+										<span className="text-[#FA4616]">Failed</span>
 									)}
 								</div>
 							</div>
@@ -109,19 +109,19 @@ export default function VideoGallery({ userId }: VideoGalleryProps) {
 
 						{/* Video Info */}
 						<div className="flex flex-1 flex-col gap-3 p-5">
-							<p className="line-clamp-2 text-sm text-white">
+							<p className="line-clamp-2 text-sm font-medium text-[#FCF6F5]">
 								{video.prompt_text}
 							</p>
 
-							<div className="flex items-center justify-between text-xs text-slate-300">
+							<div className="flex items-center justify-between text-xs text-[#FCF6F5]/70">
 								<div>
 									<span className="capitalize">{video.sora_model}</span> •{" "}
 									{video.duration_seconds}s
 								</div>
-								<div>{video.credits_used} credits</div>
+								<div className="font-semibold text-[#FA4616]">{video.credits_used} credits</div>
 							</div>
 
-							<p className="text-xs text-slate-500">
+							<p className="text-xs text-[#FCF6F5]/50">
 								{new Date(video.created_at).toLocaleDateString()}
 							</p>
 
@@ -130,7 +130,7 @@ export default function VideoGallery({ userId }: VideoGalleryProps) {
 									<a
 										href={video.video_url}
 										download
-										className="inline-flex w-full items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
+										className="inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-bold text-[#141212] transition hover:bg-[#FA4616]/90"
 									>
 										Download
 									</a>

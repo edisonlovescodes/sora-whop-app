@@ -91,15 +91,15 @@ export default function VideoSettings({ onSettingsChange }: VideoSettingsProps) 
 	};
 
 	return (
-		<div className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-md shadow-black/10">
+		<div className="rounded-3xl border border-[#FA4616]/20 bg-[#141212] p-6">
 			<div className="space-y-1">
-				<h2 className="text-lg font-semibold text-white">Settings</h2>
-				<p className="text-sm text-slate-300">Quick toggles. That&apos;s it.</p>
+				<h2 className="text-xl font-bold text-[#FCF6F5]">Settings</h2>
+				<p className="text-sm text-[#FCF6F5]/70">Configure your video</p>
 			</div>
 
-			<section className="mt-5 space-y-2">
-				<h3 className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-					Model quality
+			<section className="mt-6 space-y-3">
+				<h3 className="text-xs font-bold uppercase tracking-wider text-[#FA4616]">
+					Model Quality
 				</h3>
 				<div className="grid gap-2 sm:grid-cols-2">
 					{MODEL_OPTIONS.map((option) => {
@@ -110,17 +110,17 @@ export default function VideoSettings({ onSettingsChange }: VideoSettingsProps) 
 								key={option.value}
 								onClick={() => handleChange("model", option.value)}
 								aria-pressed={isActive}
-								className={`rounded-2xl border px-4 py-3 text-left text-sm transition focus:outline-none focus:ring-2 focus:ring-sky-500/40 ${
+								className={`rounded-2xl border px-4 py-3 text-left text-sm transition focus:outline-none focus:ring-2 focus:ring-[#FA4616]/40 ${
 									isActive
-										? "border-sky-500/60 bg-sky-500/10 text-white"
-										: "border-white/10 bg-slate-950/60 text-slate-200 hover:border-white/20"
+										? "border-[#FA4616] bg-[#FA4616]/10"
+										: "border-[#FA4616]/20 bg-[#141212]/50 hover:border-[#FA4616]/40"
 								}`}
 							>
-								<p className="font-semibold">{option.label}</p>
-								<p className="mt-1 text-xs text-slate-300">
+								<p className="font-bold text-[#FCF6F5]">{option.label}</p>
+								<p className="mt-1 text-xs text-[#FCF6F5]/70">
 									{option.description}
 								</p>
-								<p className="mt-2 text-[11px] text-slate-400">
+								<p className="mt-2 text-[11px] text-[#FCF6F5]/50">
 									{option.subLabel}
 								</p>
 							</button>
@@ -129,9 +129,9 @@ export default function VideoSettings({ onSettingsChange }: VideoSettingsProps) 
 				</div>
 			</section>
 
-			<section className="mt-5 space-y-2">
-				<h3 className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-					Aspect ratio
+			<section className="mt-6 space-y-3">
+				<h3 className="text-xs font-bold uppercase tracking-wider text-[#FA4616]">
+					Aspect Ratio
 				</h3>
 				<div className="grid gap-2 sm:grid-cols-2">
 					{RESOLUTION_OPTIONS.map((option) => {
@@ -142,14 +142,14 @@ export default function VideoSettings({ onSettingsChange }: VideoSettingsProps) 
 								key={option.value}
 								onClick={() => handleChange("resolution", option.value)}
 								aria-pressed={isActive}
-								className={`rounded-2xl border px-4 py-3 text-left text-sm transition focus:outline-none focus:ring-2 focus:ring-sky-500/40 ${
+								className={`rounded-2xl border px-4 py-3 text-left text-sm transition focus:outline-none focus:ring-2 focus:ring-[#FA4616]/40 ${
 									isActive
-										? "border-sky-500/60 bg-sky-500/10 text-white"
-										: "border-white/10 bg-slate-950/60 text-slate-200 hover:border-white/20"
+										? "border-[#FA4616] bg-[#FA4616]/10"
+										: "border-[#FA4616]/20 bg-[#141212]/50 hover:border-[#FA4616]/40"
 								}`}
 							>
-								<p className="font-semibold">{option.label}</p>
-								<p className="mt-1 text-xs text-slate-300">
+								<p className="font-bold text-[#FCF6F5]">{option.label}</p>
+								<p className="mt-1 text-xs text-[#FCF6F5]/70">
 									{option.description}
 								</p>
 							</button>
@@ -158,9 +158,9 @@ export default function VideoSettings({ onSettingsChange }: VideoSettingsProps) 
 				</div>
 			</section>
 
-			<section className="mt-5 space-y-2">
-				<h3 className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-					Clip length
+			<section className="mt-6 space-y-3">
+				<h3 className="text-xs font-bold uppercase tracking-wider text-[#FA4616]">
+					Clip Length
 				</h3>
 				<div className="grid gap-2 sm:grid-cols-3">
 					{DURATION_OPTIONS.map((option) => {
@@ -171,14 +171,14 @@ export default function VideoSettings({ onSettingsChange }: VideoSettingsProps) 
 								key={option.value}
 								onClick={() => handleChange("duration", option.value)}
 								aria-pressed={isActive}
-								className={`rounded-2xl border px-3 py-3 text-left text-sm transition focus:outline-none focus:ring-2 focus:ring-sky-500/40 ${
+								className={`rounded-2xl border px-3 py-3 text-left text-sm transition focus:outline-none focus:ring-2 focus:ring-[#FA4616]/40 ${
 									isActive
-										? "border-sky-500/60 bg-sky-500/10 text-white"
-										: "border-white/10 bg-slate-950/60 text-slate-200 hover:border-white/20"
+										? "border-[#FA4616] bg-[#FA4616]/10"
+										: "border-[#FA4616]/20 bg-[#141212]/50 hover:border-[#FA4616]/40"
 								}`}
 							>
-								<p className="font-semibold">{option.label}</p>
-								<p className="mt-1 text-xs text-slate-300">
+								<p className="font-bold text-[#FCF6F5]">{option.label}</p>
+								<p className="mt-1 text-xs text-[#FCF6F5]/70">
 									{option.description}
 								</p>
 							</button>
@@ -187,9 +187,9 @@ export default function VideoSettings({ onSettingsChange }: VideoSettingsProps) 
 				</div>
 			</section>
 
-			<div className="mt-5 rounded-2xl border border-sky-500/40 bg-sky-500/10 px-4 py-3 text-sm text-sky-100">
-				<strong className="font-semibold">{creditsRequired} credits</strong>{" "}
-				estimated for this render.
+			<div className="mt-6 rounded-2xl border border-[#FA4616]/40 bg-[#FA4616]/10 px-4 py-3 text-sm text-[#FCF6F5]">
+				<strong className="font-bold text-[#FA4616]">{creditsRequired} credits</strong>{" "}
+				estimated for this render
 			</div>
 		</div>
 	);
