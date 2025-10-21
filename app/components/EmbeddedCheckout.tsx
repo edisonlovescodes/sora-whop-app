@@ -11,10 +11,18 @@ export default function EmbeddedCheckout({ url, label = "Upgrade Now" }: Embedde
   const [open, setOpen] = useState(false);
 
   const handleOpen = useCallback(() => {
-    if (!url) {
-      // fallback: nothing to embed, ignore
+    if (!url) return;
+    // Many providers (including some Whop checkout endpoints) deny iframe embedding.
+    // If it's a Whop checkout link, open in the top window for a reliable flow.
+    if (/^https?:\/\/([^.]+\.)?whop\.com\/.+/i.test(url)) {
+      try {
+        window.open(url, "_top");
+      } catch {
+        window.location.href = url;
+      }
       return;
     }
+    // Otherwise try to embed in a modal iframe
     setOpen(true);
   }, [url]);
 
@@ -56,11 +64,11 @@ export default function EmbeddedCheckout({ url, label = "Upgrade Now" }: Embedde
               </button>
             </div>
             <div className="h-[70vh] w-full bg-black">
-              {/* We embed the hosted checkout directly */}
+              {/* If we got here, we render an iframe. Some providers may still block. */}
               <iframe
                 src={url}
                 className="h-full w-full"
-                title="Whop Checkout"
+                title="Checkout"
                 allow="payment *; fullscreen"
               />
             </div>
@@ -70,4 +78,3 @@ export default function EmbeddedCheckout({ url, label = "Upgrade Now" }: Embedde
     </>
   );
 }
-
