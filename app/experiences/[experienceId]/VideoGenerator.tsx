@@ -196,11 +196,17 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
                       </div>
                     )}
 
-					{error && (
-						<p className="mt-4 rounded-2xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
-							{error}
-						</p>
-					)}
+                    {error && (
+                        <div className="mt-4 rounded-2xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+                            <p>{error}</p>
+                            <a
+                              href="/pricing"
+                              className="mt-3 inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-xs font-semibold text-rose-700 hover:bg-slate-200"
+                            >
+                              Get more credits
+                            </a>
+                        </div>
+                    )}
 
 					{successMessage && (
 						<p className="mt-4 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-100">

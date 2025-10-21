@@ -12,6 +12,12 @@ export default async function PricingPage() {
 
   const appId = process.env.NEXT_PUBLIC_WHOP_APP_ID || "";
   const installUrl = appId ? `https://whop.com/apps/${appId}/install/` : "#";
+  const basicUrl = process.env.NEXT_PUBLIC_WHOP_PRICE_BASIC_URL || installUrl;
+  const proUrl = process.env.NEXT_PUBLIC_WHOP_PRICE_PRO_URL || installUrl;
+  const maxUrl = process.env.NEXT_PUBLIC_WHOP_PRICE_MAX_URL || installUrl;
+  const topup10 = process.env.NEXT_PUBLIC_WHOP_TOPUP_10_URL || installUrl;
+  const topup25 = process.env.NEXT_PUBLIC_WHOP_TOPUP_25_URL || installUrl;
+  const topup50 = process.env.NEXT_PUBLIC_WHOP_TOPUP_50_URL || installUrl;
 
   const std = CREDIT_COSTS["sora-2"]; // {4:1, 8:2, 12:3}
   const pro = CREDIT_COSTS["sora-2-pro"]; // {4:2, 8:4, 12:6}
@@ -92,7 +98,7 @@ export default async function PricingPage() {
             </ul>
             <div className="mt-6">
               <a
-                href={installUrl}
+                href={basicUrl}
                 className="inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90"
               >
                 Upgrade Now
@@ -115,7 +121,7 @@ export default async function PricingPage() {
             </ul>
             <div className="mt-6">
               <a
-                href={installUrl}
+                href={proUrl}
                 className="inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90"
               >
                 Upgrade Now
@@ -135,11 +141,37 @@ export default async function PricingPage() {
             </ul>
             <div className="mt-6">
               <a
-                href={installUrl}
+                href={maxUrl}
                 className="inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90"
               >
                 Upgrade Now
               </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Top up one-time credits */}
+        <section className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-5">
+          <h2 className="text-lg font-semibold">Top up credits</h2>
+          <p className="mt-1 text-sm text-[#FCF6F5]/80">One-time packs to keep the renders flowing.</p>
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-[#141212] p-4">
+              <div className="text-sm text-[#FCF6F5]/80">Starter Pack</div>
+              <div className="mt-1 text-2xl font-semibold">$10</div>
+              <p className="mt-1 text-sm text-[#FCF6F5]/80">5 credits (20s std)</p>
+              <a href={topup10} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy</a>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-[#141212] p-4">
+              <div className="text-sm text-[#FCF6F5]/80">Creator Pack</div>
+              <div className="mt-1 text-2xl font-semibold">$25</div>
+              <p className="mt-1 text-sm text-[#FCF6F5]/80">14 credits (56s std)</p>
+              <a href={topup25} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy</a>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-[#141212] p-4">
+              <div className="text-sm text-[#FCF6F5]/80">Pro Pack</div>
+              <div className="mt-1 text-2xl font-semibold">$50</div>
+              <p className="mt-1 text-sm text-[#FCF6F5]/80">30 credits (120s std)</p>
+              <a href={topup50} className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-sm font-semibold text-[#141212] hover:opacity-90">Buy</a>
             </div>
           </div>
         </section>
@@ -151,4 +183,3 @@ export default async function PricingPage() {
     </div>
   );
 }
-
