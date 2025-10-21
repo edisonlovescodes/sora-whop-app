@@ -14,23 +14,23 @@ const STATUS_META: Record<
 	}
 > = {
 	pending: {
-		label: "Queued up",
-		description: "Waiting for the render slot.",
+		label: "In Queue",
+		description: "Your video is waiting to be processed.",
 		accent: "bg-amber-400",
 	},
 	processing: {
-		label: "Rendering",
-		description: "Frames are cooking.",
+		label: "Generating",
+		description: "AI is creating your video.",
 		accent: "bg-sky-400",
 	},
 	completed: {
-		label: "All done",
-		description: "Clip is ready to play.",
+		label: "Complete",
+		description: "Your video is ready to watch and download.",
 		accent: "bg-emerald-400",
 	},
 	failed: {
-		label: "Didn’t finish",
-		description: "Try again or tweak the prompt.",
+		label: "Generation Failed",
+		description: "Something went wrong. Please try again.",
 		accent: "bg-rose-400",
 	},
 };
@@ -113,7 +113,7 @@ export function VideoStatus({
 		minutesSinceUpdate >= 4;
 	const dynamicDescription =
 			status === "processing" && typeof progress === "number"
-				? `Render ${progress}% done.`
+				? `${progress}% complete. Almost there!`
 			: statusMeta.description;
 
 	return (
@@ -168,7 +168,7 @@ export function VideoStatus({
 
 			{status === "failed" && (
 				<p className="mt-4 rounded-2xl border border-[#FA4616]/40 bg-[#FA4616]/10 px-4 py-3 text-sm text-[#FA4616]">
-					{error ?? "The render could not be completed. Please try again."}
+					{error ?? "Video generation failed. Please try again or contact support if the issue persists."}
 				</p>
 			)}
 
@@ -176,14 +176,14 @@ export function VideoStatus({
 				<div className="mt-4 flex items-center gap-3 rounded-2xl border border-[#FA4616]/40 bg-[#FA4616]/10 px-4 py-3 text-sm text-[#FCF6F5]">
 					<span className="h-2 w-2 animate-ping rounded-full bg-[#FA4616]" />
 					{typeof progress === "number"
-						? `${progress}% and climbing…`
-						: "Sora is stitching frames…"}
+						? `${progress}% complete—hang tight!`
+						: "Processing your video..."}
 				</div>
 			)}
 
 			{showLagWarning && (
 				<p className="mt-3 text-xs text-[#FA4616]/70">
-					Running long. Peek at Replicate or restart if needed.
+					This is taking longer than usual. Your video is still processing.
 				</p>
 			)}
 
@@ -205,14 +205,14 @@ export function VideoStatus({
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							Open in New Tab
+							View Full Size
 						</a>
 						<a
 							className="inline-flex items-center justify-center rounded-full bg-[#FA4616] px-5 py-2 text-sm font-bold text-[#141212] transition hover:bg-[#FA4616]/90"
 							href={videoUrl}
 							download
 						>
-							Download Clip
+							Download Video
 						</a>
 					</div>
 				</div>

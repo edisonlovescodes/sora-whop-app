@@ -260,8 +260,8 @@ export default function PromptBuilder({ onPromptChange }: PromptBuilderProps) {
 		<div className="rounded-3xl border border-[#FA4616]/20 bg-[#141212] p-6">
 			<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 				<div>
-					<h2 className="text-xl font-bold text-[#FCF6F5]">Prompt</h2>
-					<p className="text-sm text-[#FCF6F5]/70">Describe what you want to see</p>
+					<h2 className="text-xl font-bold text-[#FCF6F5]">Your Vision</h2>
+					<p className="text-sm text-[#FCF6F5]/70">Describe your scene in plain English or structured JSON</p>
 				</div>
 				<div className="inline-flex rounded-full border border-[#FA4616]/30 bg-[#FA4616]/10 p-1 text-xs font-semibold">
 					<button
@@ -296,7 +296,7 @@ export default function PromptBuilder({ onPromptChange }: PromptBuilderProps) {
                     <textarea
                         value={simplePrompt}
                         onChange={(event) => handleSimpleChange(event.target.value)}
-                        placeholder="Example: a futuristic explorer on a rooftop at golden hour with neon holograms"
+                        placeholder="A cinematic drone shot flying over Tokyo at sunset, neon signs reflecting in rain-soaked streets..."
                         rows={5}
                         className="w-full rounded-2xl border border-[#FA4616]/20 bg-[#141212]/50 p-4 text-base text-[#FCF6F5] placeholder:text-[#FCF6F5]/40 focus:border-[#FA4616] focus:outline-none focus:ring-2 focus:ring-[#FA4616]/30"
                     />
@@ -309,7 +309,7 @@ export default function PromptBuilder({ onPromptChange }: PromptBuilderProps) {
 							disabled={isEnhancing}
 							className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FA4616] px-5 py-2 text-xs font-bold text-[#141212] shadow-lg hover:bg-[#FA4616]/90 disabled:cursor-not-allowed disabled:opacity-60"
 						>
-							{isEnhancing ? "Working…" : "Auto Build JSON"}
+							{isEnhancing ? "Enhancing…" : "Enhance with AI"}
 						</button>
 					</div>
 				</div>
@@ -323,7 +323,7 @@ export default function PromptBuilder({ onPromptChange }: PromptBuilderProps) {
                         className="w-full rounded-2xl border border-[#FA4616]/20 bg-[#141212]/50 p-4 font-mono text-sm text-[#FCF6F5] focus:border-[#FA4616] focus:outline-none focus:ring-2 focus:ring-[#FA4616]/30"
                     />
                     <div className="flex flex-wrap items-center justify-between gap-3">
-                      <p className="text-xs text-[#FCF6F5]/50">Keep sections tidy: scene, camera, motion, lighting, timeline</p>
+                      <p className="text-xs text-[#FCF6F5]/50">Structure: scene, camera, motion, lighting, timeline</p>
                       <div className="flex gap-2">
                         <button
                           type="button"
@@ -332,7 +332,7 @@ export default function PromptBuilder({ onPromptChange }: PromptBuilderProps) {
                           }}
                           className="inline-flex items-center justify-center rounded-full bg-[#FA4616] px-4 py-2 text-xs font-bold text-[#141212] shadow-lg hover:bg-[#FA4616]/90"
                         >
-                          Copy JSON
+                          Copy
                         </button>
                         <button
                           type="button"
@@ -365,10 +365,10 @@ export default function PromptBuilder({ onPromptChange }: PromptBuilderProps) {
 			<div className="mt-8 space-y-4">
 				<div className="flex items-center justify-between">
 					<h3 className="text-sm font-bold uppercase tracking-wider text-[#FA4616]">
-						Quick Start Templates
+						Professional Templates
 					</h3>
 					<span className="text-xs text-[#FCF6F5]/50">
-						Tap to load
+						Click to use
 					</span>
 				</div>
 

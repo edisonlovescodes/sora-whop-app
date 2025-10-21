@@ -57,7 +57,7 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
         const promptText = promptState.promptText.trim();
 
 		if (!promptText) {
-			setError("Add a prompt before generating your video.");
+			setError("Please describe your video before generating.");
 			setSuccessMessage(null);
 			return;
 		}
@@ -91,7 +91,7 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
 			setCreditsRemaining(
 				typeof data.creditsRemaining === "number" ? data.creditsRemaining : null,
 			);
-			setSuccessMessage("Queued! Watch the status bar below.");
+			setSuccessMessage("Video queued successfully! Track progress below.");
 		} catch (err) {
 			setError(err instanceof Error ? err.message : "Unknown error occurred.");
 		} finally {
@@ -108,9 +108,9 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
 
                 <div className="rounded-3xl border border-[#FA4616]/20 bg-[#141212] p-6">
                     <div className="space-y-1">
-                        <h2 className="text-xl font-bold text-[#FCF6F5]">{jsonOnly ? 'Export' : 'Summary'}</h2>
+                        <h2 className="text-xl font-bold text-[#FCF6F5]">{jsonOnly ? 'Export JSON' : 'Ready to Render'}</h2>
                         <p className="text-sm text-[#FCF6F5]/70">
-                          {jsonOnly ? 'Copy your JSON and paste into Sora' : 'Review and render'}
+                          {jsonOnly ? 'Copy or download your prompt for Sora' : 'Review your settings and start creating'}
                         </p>
                     </div>
 
@@ -145,12 +145,12 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
                         {isGenerating ? (
                             <>
                                 <span className="h-2 w-2 animate-ping rounded-full bg-[#141212]" />
-                                Starting render…
+                                Creating Your Video…
                             </>
                         ) : (
                             <>
                                 <span className="h-2 w-2 rounded-full bg-[#141212]/80" />
-                                Render Clip
+                                Generate Video
                             </>
                         )}
                     </button>
@@ -216,9 +216,9 @@ export function VideoGenerator({ userId, experienceId }: VideoGeneratorProps) {
 
 					{typeof creditsRemaining === "number" && (
 						<p className="mt-4 text-xs text-[#FCF6F5]/70">
-							Credits after run:{" "}
+							Remaining balance:{" "}
 							<span className="font-bold text-[#FA4616]">
-								{creditsRemaining}
+								{creditsRemaining} {creditsRemaining === 1 ? 'credit' : 'credits'}
 							</span>
 						</p>
 					)}

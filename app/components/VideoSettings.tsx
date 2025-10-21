@@ -93,8 +93,8 @@ export default function VideoSettings({ onSettingsChange }: VideoSettingsProps) 
 	return (
 		<div className="rounded-3xl border border-[#FA4616]/20 bg-[#141212] p-6">
 			<div className="space-y-1">
-				<h2 className="text-xl font-bold text-[#FCF6F5]">Settings</h2>
-				<p className="text-sm text-[#FCF6F5]/70">Configure your video</p>
+				<h2 className="text-xl font-bold text-[#FCF6F5]">Video Settings</h2>
+				<p className="text-sm text-[#FCF6F5]/70">Choose quality, format, and duration</p>
 			</div>
 
 			<section className="mt-6 space-y-3">
@@ -188,8 +188,7 @@ export default function VideoSettings({ onSettingsChange }: VideoSettingsProps) 
 			</section>
 
 			<div className="mt-6 rounded-2xl border border-[#FA4616]/40 bg-[#FA4616]/10 px-4 py-3 text-sm text-[#FCF6F5]">
-				<strong className="font-bold text-[#FA4616]">{creditsRequired} credits</strong>{" "}
-				estimated for this render
+				This video will cost <strong className="font-bold text-[#FA4616]">{creditsRequired} {creditsRequired === 1 ? 'credit' : 'credits'}</strong>
 			</div>
 		</div>
 	);

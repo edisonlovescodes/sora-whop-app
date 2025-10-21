@@ -47,7 +47,7 @@ export default function VideoGallery({ userId }: VideoGalleryProps) {
 		return (
 			<div className="w-full rounded-3xl border border-[#FA4616]/20 bg-[#141212] p-10 text-center">
 				<div className="mx-auto h-10 w-10 rounded-full border-4 border-[#FA4616]/20 border-t-[#FA4616] animate-spin" />
-				<p className="mt-6 text-sm text-[#FCF6F5]/70">Loading clips…</p>
+				<p className="mt-6 text-sm text-[#FCF6F5]/70">Loading your videos...</p>
 			</div>
 		);
 	}
@@ -64,7 +64,7 @@ export default function VideoGallery({ userId }: VideoGalleryProps) {
 		return (
 				<div className="w-full rounded-3xl border border-[#FA4616]/20 bg-[#141212] p-10 text-center">
 					<p className="text-sm text-[#FCF6F5]/70">
-						No clips yet—create one above
+						No videos yet. Create your first one above!
 					</p>
 			</div>
 		);
@@ -73,7 +73,7 @@ export default function VideoGallery({ userId }: VideoGalleryProps) {
 	return (
 		<div className="w-full">
 			<h3 className="mb-5 text-xl font-bold text-[#FCF6F5]">
-				Your Clips ({videos.length})
+				Your Video Library ({videos.length})
 			</h3>
 
 			<div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -96,12 +96,12 @@ export default function VideoGallery({ userId }: VideoGalleryProps) {
 						) : (
 							<div className="flex aspect-video items-center justify-center bg-[#141212]/50">
 								<div className="text-center text-sm text-[#FCF6F5]/70">
-									{video.status === "pending" && "Pending…"}
+									{video.status === "pending" && "Queued..."}
 									{video.status === "processing" && (
 										<div className="mx-auto h-8 w-8 rounded-full border-4 border-[#FA4616]/20 border-t-[#FA4616] animate-spin" />
 									)}
 									{video.status === "failed" && (
-										<span className="text-[#FA4616]">Failed</span>
+										<span className="text-[#FA4616]">Generation Failed</span>
 									)}
 								</div>
 							</div>
