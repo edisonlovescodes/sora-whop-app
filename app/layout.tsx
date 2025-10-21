@@ -1,7 +1,7 @@
-import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import WhopClient from "./whop-client";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -18,11 +18,6 @@ export const metadata: Metadata = {
 	description: "Transform your ideas into stunning AI videos with Sora 2. Advanced JSON prompting for photorealistic results.",
 };
 
-// Avoid initializing Whop SDK during server build/prerender. Load on client only.
-const WhopAppClient = dynamic(
-  () => import("@whop/react/components").then((m) => m.WhopApp),
-  { ssr: false },
-);
 
 export default function RootLayout({
 	children,
@@ -34,7 +29,7 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<WhopAppClient>{children}</WhopAppClient>
+				<WhopClient>{children}</WhopClient>
 			</body>
 		</html>
 	);
