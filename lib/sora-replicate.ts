@@ -120,11 +120,17 @@ export async function checkSoraJobStatusReplicate(
 
 		let videoUrl: string | undefined;
 		if (status === "succeeded") {
+			const predictionRecord = prediction as unknown as {
+				output?: unknown;
+				output_url?: unknown;
+				output_urls?: unknown;
+				files?: unknown;
+			};
 			videoUrl =
-				extractVideoUrl(prediction.output) ??
-				extractVideoUrl((prediction as Record<string, unknown>).output_url) ??
-				extractVideoUrl((prediction as Record<string, unknown>).output_urls) ??
-				extractVideoUrl((prediction as Record<string, unknown>).files);
+				extractVideoUrl(predictionRecord.output) ??
+				extractVideoUrl(predictionRecord.output_url) ??
+				extractVideoUrl(predictionRecord.output_urls) ??
+				extractVideoUrl(predictionRecord.files);
 		}
 
 		if (!videoUrl && status === "succeeded") {
