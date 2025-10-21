@@ -98,7 +98,7 @@ export default async function PricingPage() {
               <li>✓ Priority queue</li>
             </ul>
             <div className="mt-6">
-              <EmbeddedCheckout url={basicUrl} label="Upgrade Now" />
+              <EmbeddedCheckout url="https://whop.com/checkout/plan_X7AiyljbPxgwd?d2c=true" label="Upgrade Now" />
             </div>
           </div>
 
