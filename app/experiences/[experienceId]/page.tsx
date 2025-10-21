@@ -1,47 +1,47 @@
-import { whopSdk } from "@/lib/whop-sdk";
+// app/experiences/[experienceId]/page.tsx
 import { headers } from "next/headers";
+import { getOrCreateUser } from "@/lib/users";
+import { VideoGenerator } from "./VideoGenerator";
+import VideoGallery from "@/app/components/VideoGallery";
 
 export default async function ExperiencePage({
-	params,
+  params,
 }: {
-	params: Promise<{ experienceId: string }>;
+  params: Promise<{ experienceId: string }>;
 }) {
-	// The headers contains the user token
-	const headersList = await headers();
+  const headersList = await headers();
+  const whopUserToken = headersList.get('x-whop-user-token') || '';
 
-	// The experienceId is a path param
-	const { experienceId } = await params;
+  const { experienceId } = await params;
+  const { user, error } = await getOrCreateUser(whopUserToken);
 
-	// The user token is in the headers
-	const { userId } = await whopSdk.verifyUserToken(headersList);
+  if (error || !user) {
+    return <div>Error: User not found</div>;
+  }
 
-	const result = await whopSdk.access.checkIfUserHasAccessToExperience({
-		userId,
-		experienceId,
-	});
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <main className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 pb-16 pt-12 sm:px-6 lg:px-8 lg:pt-16">
+        <header className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-md shadow-black/10">
+          <span className="text-xs font-semibold uppercase tracking-wide text-sky-300">
+            Make a clip
+          </span>
+          <div className="space-y-1">
+            <h1 className="text-2xl font-semibold text-white sm:text-3xl">
+              Type it. Render it. Share it.
+            </h1>
+            <p className="text-sm text-slate-300">
+              No deep settings. Just plug in an idea and hit generate.
+            </p>
+          </div>
+        </header>
 
-	const user = await whopSdk.users.getUser({ userId });
-	const experience = await whopSdk.experiences.getExperience({ experienceId });
+        <VideoGenerator userId={user.id} experienceId={experienceId} />
 
-	// Either: 'admin' | 'customer' | 'no_access';
-	// 'admin' means the user is an admin of the whop, such as an owner or moderator
-	// 'customer' means the user is a common member in this whop
-	// 'no_access' means the user does not have access to the whop
-	const { accessLevel } = result;
-
-	return (
-		<div className="flex justify-center items-center h-screen px-8">
-			<h1 className="text-xl">
-				Hi <strong>{user.name}</strong>, you{" "}
-				<strong>{result.hasAccess ? "have" : "do not have"} access</strong> to
-				this experience. Your access level to this whop is:{" "}
-				<strong>{accessLevel}</strong>. <br />
-				<br />
-				Your user ID is <strong>{userId}</strong> and your username is{" "}
-				<strong>@{user.username}</strong>.<br />
-				<br />
-				You are viewing the experience: <strong>{experience.name}</strong>
-			</h1>
-		</div>
-	);
+        <section className="rounded-3xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-black/10">
+          <VideoGallery userId={user.id} />
+        </section>
+      </main>
+    </div>
+  );
 }

@@ -1,37 +1,165 @@
-This is a template for a whop app built in NextJS. Fork it and keep the parts you need for your app. 
+# Sora 2 Pro - AI Video Generator for Whop
 
-# Whop NextJS App Template
+Transform your ideas into stunning AI videos with advanced JSON prompting. First Sora 2 app on the Whop marketplace!
 
-To run this project: 
+## Features
 
-1. Install dependencies with: `pnpm i`
+- **Smart Prompt Builder**: Simple mode for beginners, JSON mode for advanced users
+- **Template Library**: Pre-built templates for Cinematic, Product Demo, and Tutorial videos
+- **AI Prompt Enhancement**: Convert natural language to optimized JSON prompts
+- **Real-time Generation**: Track video generation progress with live status updates
+- **Video Gallery**: Browse and download all your generated videos
+- **Credit System**: Subscription-based pricing with transparent credit usage
+- **Multi-tier Plans**: Starter, Pro, and Max plans with different quality options
 
-2. Create a Whop App on your [whop developer dashboard](https://whop.com/dashboard/developer/), then go to the "Hosting" section and:
-	- Ensure the "Base URL" is set to the domain you intend to deploy the site on.
-	- Ensure the "App path" is set to `/experiences/[experienceId]`
-	- Ensure the "Dashboard path" is set to `/dashboard/[companyId]` 
-	- Ensure the "Discover path" is set to `/discover` 
+## Tech Stack
 
-3. Copy the environment variables from the `.env.development` into a `.env.local`. Ensure to use real values from the whop dashboard.
+- **Frontend**: Next.js 15, React 19, TypeScript, Tailwind CSS
+- **Authentication**: Whop SDK with iframe integration
+- **Database**: Supabase (PostgreSQL)
+- **AI**: OpenAI Sora 2 API
+- **Deployment**: Vercel
+- **Forms**: React Hook Form with Zod validation
 
-4. Go to a whop created in the same org as the app you created. Navigate to the tools section and add your app.
+## Quick Start
 
-5. Run `pnpm dev` to start the dev server. Then in the top right of the window find a translucent settings icon. Select "localhost". The default port 3000 should work.
+### 1. Install Dependencies
 
-## Deploying
+```bash
+pnpm install
+```
 
-1. Upload your fork / copy of this template to github. 
+### 2. Set Up Environment Variables
 
-2. Go to [Vercel](https://vercel.com/new) and link the repository. Deploy your application with the environment variables from your `.env.local`
+Copy `.env.local` and fill in your credentials:
 
-3. If necessary update you "Base Domain" and webhook callback urls on the app settings page on the whop dashboard.
+```bash
+# Whop
+WHOP_API_KEY="your_key"
+NEXT_PUBLIC_WHOP_APP_ID="your_app_id"
 
-## Troubleshooting
+# OpenAI
+OPENAI_API_KEY="your_openai_key"
 
-**App not loading properly?** Make sure to set the "App path" in your Whop developer dashboard. The placeholder text in the UI does not mean it's set - you must explicitly enter `/experiences/[experienceId]` (or your chosen path name)
-a
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL="your_supabase_url"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your_anon_key"
+SUPABASE_SERVICE_ROLE_KEY="your_service_key"
+```
 
-**Make sure to add env.local** Make sure to get the real app environment vairables from your whop dashboard and set them in .env.local
+### 3. Set Up Database
 
+Run `supabase-schema.sql` in your Supabase SQL editor to create tables.
 
-For more info, see our docs at https://dev.whop.com/introduction
+### 4. Start Development Server
+
+```bash
+pnpm dev
+```
+
+## Full Setup Guide
+
+See [SETUP.md](./SETUP.md) for complete setup instructions including:
+- Whop app configuration
+- Supabase database setup
+- OpenAI API access
+- Deployment to Vercel
+- Submitting to Whop App Store
+
+## Project Structure
+
+```
+/app
+  /api
+    /enhance-prompt      # AI prompt enhancement
+    /generate-video      # Video generation
+    /check-status/[id]   # Job status polling
+    /videos             # User video history
+  /components
+    PromptBuilder.tsx   # Prompt input UI
+    VideoSettings.tsx   # Generation settings
+    VideoStatus.tsx     # Progress tracking
+    VideoGallery.tsx    # Video history grid
+  /experiences/[id]
+    page.tsx           # Main app page
+    VideoGenerator.tsx # Main logic component
+
+/lib
+  /types
+    database.ts        # TypeScript types
+  credits.ts           # Credit management
+  users.ts            # User operations
+  sora.ts             # OpenAI Sora integration
+  supabase.ts         # Database client
+  whop-sdk.ts         # Whop SDK setup
+```
+
+## API Routes
+
+### `POST /api/enhance-prompt`
+Convert natural language to JSON prompt structure
+
+### `POST /api/generate-video`
+Start a new Sora 2 video generation
+
+### `GET /api/check-status/[jobId]`
+Poll video generation status
+
+### `GET /api/videos`
+Fetch user's video history
+
+## Pricing Structure
+
+| Tier | Price | Credits | Features |
+|------|-------|---------|----------|
+| **Starter** | $29/mo | 15 standard | 720p, 12s max |
+| **Pro** | $79/mo | 30 std + 10 pro | 1080p, mix quality |
+| **Max** | $199/mo | 60 std + 20 pro | Best quality, most credits |
+
+## Credit Costs
+
+**Standard (720p - Sora 2):**
+- 4 seconds = 1 credit
+- 8 seconds = 2 credits
+- 12 seconds = 3 credits
+
+**Pro (1080p - Sora 2 Pro):**
+- 4 seconds = 2 credits
+- 8 seconds = 4 credits
+- 12 seconds = 6 credits
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push to GitHub
+2. Import repository in Vercel
+3. Add environment variables
+4. Deploy
+
+### Update Whop App Settings
+
+After deployment, update your Whop app's Base URL to your Vercel deployment URL.
+
+## First Mover Advantage
+
+This is the **first Sora 2 app** on the Whop marketplace. The AI category has ~20 apps total, with zero video generation tools. This presents a significant opportunity to capture early adopters and establish market presence.
+
+## Contributing
+
+This is V1 MVP. Future enhancements:
+- Google Drive auto-upload
+- Custom template creation
+- Batch video generation
+- Advanced analytics dashboard
+- Video remixing tools
+
+## License
+
+Private - Commercial Use
+
+## Support
+
+For issues or questions:
+- Whop Docs: https://docs.whop.com
+- OpenAI Sora Docs: https://platform.openai.com/docs/guides/video-generation

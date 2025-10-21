@@ -43,6 +43,7 @@ async function potentiallyLongRunningHandler(
 	_currency: string,
 	_amount_after_fees: number | null | undefined,
 ) {
+	void [_user_id, _amount, _currency, _amount_after_fees];
 	// This is a placeholder for a potentially long running operation
 	// In a real scenario, you might need to fetch user data, update a database, etc.
 }

@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Whop App",
-	description: "My Whop App",
+	title: "Sora 2 Pro - AI Video Generator",
+	description: "Transform your ideas into stunning AI videos with Sora 2. Advanced JSON prompting for photorealistic results.",
 };
 
 export default function RootLayout({
