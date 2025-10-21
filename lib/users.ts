@@ -21,20 +21,20 @@ export async function getOrCreateUser(
 		return { user: existingUser as User, error: null };
 	}
 
-	// Create new user with starter tier and initial credits
-	const starterConfig = TIER_CONFIG.starter;
-	const { data: newUser, error: createError } = await supabaseAdmin
-		.from("users")
-		.insert({
-			whop_user_id: whopUserId,
-			email: email ?? null,
-			username: username ?? null,
-			subscription_tier: "starter",
-			credits_remaining: starterConfig.creditsPerMonth,
-			total_credits_purchased: starterConfig.creditsPerMonth,
-		})
-		.select()
-		.single();
+    // Create new user with starter tier and FREE starter credits for one 8s 720p
+    // This equals 2 standard credits.
+    const { data: newUser, error: createError } = await supabaseAdmin
+        .from("users")
+        .insert({
+            whop_user_id: whopUserId,
+            email: email ?? null,
+            username: username ?? null,
+            subscription_tier: "starter",
+            credits_remaining: 2,
+            total_credits_purchased: 0,
+        })
+        .select()
+        .single();
 
 	if (createError) {
 		return { user: null, error: createError.message };
