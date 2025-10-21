@@ -9,6 +9,13 @@ export default async function ExperiencePage({
 }: {
   params: Promise<{ experienceId: string }>;
 }) {
+  // Debug flag: render a blank white screen to validate the correct build is loaded
+  if (process.env.NEXT_PUBLIC_DEBUG_WHITE === 'true') {
+    return (
+      <div className="min-h-screen bg-white" />
+    );
+  }
+
   const headersList = await headers();
   const whopUserToken = headersList.get('x-whop-user-token') || '';
 
